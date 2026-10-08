@@ -1,0 +1,23 @@
+{
+  "reference": "tools/ref.py:run(bits, steps)",
+  "reference_screen_comparisons": 32768,
+  "independent_head_checks": 32768,
+  "binary_frame_round_trips": 32768,
+  "reference_cycle_checks": 256,
+  "mismatches": 0,
+  "source_sha256": {
+    "tools/ref.py": "46a5dd669bca5ca0ef5ff1c3e74837c5d2477d9f111411c9bb510a79be706ba0",
+    "tools/byte_catalog.py": "f1c568ebc3d0ecaaafe3c5a516c192a41c90b5175b2f3505c1ad74266d26420c"
+  },
+  "artifact_sha256": {
+    "catalog.json": "611fccd7ad244534fb22b2f83be1abecb3e95b1e0414a25a40063703dedfdf37",
+    "all-programs.tsv": "1ea59fd00269f6069f42648452122e21f80e306dce3146d4ad7127e325d95134",
+    "traces.bin": "01bb81ad03ae49037a1f80e6e15c8e57cfbc0847b2de63998388861cd95ec009"
+  },
+  "timings_seconds": {
+    "catalog_generation": 0.039044,
+    "trace_packing_and_verification": 0.561455,
+    "total_before_verification_report": 0.629413
+  },
+  "timing_note": "Single local Python process; timings include exhaustive reference reruns and are not a GPU/cluster benchmark."
+}

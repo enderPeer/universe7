@@ -102,7 +102,7 @@ These are not part of the universe. They only measure it.
 
 | Tool | What |
 |---|---|
-| `tools/ref.py` | Reference model. `python tools/ref.py --check 12` runs the built binary on all 2,046 programs up to 10 bits and compares every screen. Result: 0 mismatches. |
+| `tools/ref.py` | Reference model. `python tools/ref.py --check N` runs the built binary on all programs up to N bits and compares every screen (N = 10: 2,046 programs, N = 12: 8,190). Result: 0 mismatches. |
 | `tools/variety.c` | Counts distinct screens per generation. `gcc -O2 -fopenmp tools/variety.c -o build/variety && ./build/variety 22` reproduces the table above in about ten minutes. |
 | `tools/table_search.c` | The exhaustive table search that chose the law. |
 
@@ -110,3 +110,14 @@ These are not part of the universe. They only measure it.
 
 6 bytes is 2^48 = 281,474,976,710,656 programs. The 22-bit map is 1/67,108,864 of that. The line continues
 generation by generation; every result committed here is a snapshot of how far the map reached.
+
+## Caveats on the numbers
+
+- The variety figures are sums of distinct screens per program length, not a union across lengths: `0`, `00` and `0000` are the same program and count once per length.
+- On the 64×64 screen the head moves at most 127 × 8 = 1,016 pixels in a run and never wraps, so paths rarely collide; the 100 % figure is partly a property of the canvas size.
+- `results/one-byte/` (all 256 one-byte programs with full 128-frame traces, 242 distinct final screens, cycles up to 256 steps) was produced under the earlier 8×8 law (commit dd9627f) by `tools/byte_catalog.py`; it is kept as the record of that law and has not been regenerated for 64×64.
+
+## Related projects
+
+- [Dimension42](https://github.com/enderPeer/Dimension42): the parent line, the NANO 8-bit machine with exhaustive class maps up to 6 bytes (2^48 programs), the 2+2 search, the behaviour catalog, the alife toolkit and the neural adder experiments. Universe 7's build convention and the bit-CPU baseline come from there.
+- [Universe-1](https://github.com/enderPeer/Universe-1/tree/claude/charming-rubin-pi8nzs): exact function maps of parametric 4-bit machines, every step of every program, self-modifying layouts and artificial-life worlds on the mapped functions. Its `docs/09_three_projects.md` compares the three projects and lists the open experiments, including the union-across-lengths count and the 64×64 one-byte catalog for Universe 7.
